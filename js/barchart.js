@@ -16,7 +16,7 @@ const margin = {left:50, right:50, bottom:50, top:50};
 const yTooltipOffset = 15; 
 
 
-// TODO: What does this code do? 
+// This code creates a smaller svg window for the hard-coded bar chart
 const svg1 = d3
   .select("#hard-coded-bar")
   .append("svg")
@@ -41,27 +41,29 @@ const data1 = [
 
 */ 
 
-// TODO: What does this code do? 
+// returns the maximum vertical point
 let maxY1 = d3.max(data1, function(d) { return d.score; });
 
-// TODO: What does each line of this code do?   
+// sets the y-axis. 
+// gives it the range 0 to the previously found max
+// scales it to fit the window's margins 
 let yScale1 = d3.scaleLinear()
             .domain([0,maxY1])
             .range([height-margin.bottom,margin.top]); 
 
-// TODO: What does each line of this code do? 
+// does the exact same thing as above, except for the x-axis
 let xScale1 = d3.scaleBand()
             .domain(d3.range(data1.length))
             .range([margin.left, width - margin.right])
             .padding(0.1); 
 
-// TODO: What does each line of this code do?  
+// creates the markings for the x-axis
 svg1.append("g")
    .attr("transform", `translate(${margin.left}, 0)`) 
    .call(d3.axisLeft(yScale1)) 
    .attr("font-size", '20px'); 
 
-// TODO: What does each line of this code do? 
+// creates the markings for the y-axis
 svg1.append("g")
     .attr("transform", `translate(0,${height - margin.bottom})`) 
     .call(d3.axisBottom(xScale1) 
@@ -74,26 +76,26 @@ svg1.append("g")
 
 */
 
-// TODO: What does each line of this code do? 
+// creates the tooltip
 const tooltip1 = d3.select("#hard-coded-bar") 
                 .append("div") 
                 .attr('id', "tooltip1") 
                 .style("opacity", 0) 
                 .attr("class", "tooltip"); 
 
-// TODO: What does each line of this code do?  
+// creates the information text box when a user's mouse hovers over  
 const mouseover1 = function(event, d) {
   tooltip1.html("Name: " + d.name + "<br> Score: " + d.score + "<br>") 
           .style("opacity", 1);  
 }
 
-// TODO: What does each line of this code do? 
+// moves information to the mouse location
 const mousemove1 = function(event, d) {
   tooltip1.style("left", (event.x)+"px") 
           .style("top", (event.y + yTooltipOffset) +"px"); 
 }
 
-// TODO: What does this code do? 
+// removes the pop-up if the mouse is not hovering
 const mouseleave1 = function(event, d) { 
   tooltip1.style("opacity", 0); 
 }
@@ -104,7 +106,10 @@ const mouseleave1 = function(event, d) {
 
 */
 
-// TODO: What does each line of this code do? 
+// use bar from the stylesheet
+// reads data from the file
+// sets a x and y posn
+// Essentially puts everything above into practice. 
 svg1.selectAll(".bar") // dictates the shape of the image being drawn
    .data(data1) // adds data
    .enter()  
