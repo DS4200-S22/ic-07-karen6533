@@ -105,8 +105,8 @@ const mouseleave1 = function(event, d) {
 */
 
 // TODO: What does each line of this code do? 
-svg1.selectAll(".bar") 
-   .data(data1) 
+svg1.selectAll(".bar") // dictates the shape of the image being drawn
+   .data(data1) // adds data
    .enter()  
    .append("rect") 
      .attr("class", "bar") 
